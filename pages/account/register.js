@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
+import AuthContext from "@/context/AuthContext";
 import styles from "@/styles/AuthForm.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
@@ -11,13 +12,16 @@ export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  useEffect(() => error && toast.error(error));
+  const { register, error } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
       toast.error("Passwords do not match");
       return;
     }
-    console.log({ username, email, password });
+    register({ username, email, password });
   };
   return (
     <Layout title="User Registration">
@@ -63,7 +67,7 @@ export default function RegisterPage() {
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
           </div>
-          <input type="submit" value="Login" className="btn" />
+          <input type="submit" value="Register" className="btn" />
         </form>
         <p>
           Already have an account? <Link href="/account/login">Login</Link>
