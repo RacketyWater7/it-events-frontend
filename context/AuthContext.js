@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { NEXT_URL } from "../config";
-import { isResSent } from "next/dist/next-server/lib/utils";
+import { NEXT_URL } from "@/config/index";
+// import { isResSent } from "next/dist/next-server/lib/utils";
 
 const AuthContext = createContext();
 
