@@ -11,7 +11,7 @@ export default async (req, res) => {
     const strapiRes = await fetch(`${API_URL}/users/me`, {
       method: "GET",
       headers: {
-        Authorization: `Beader ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const user = await strapiRes.json();
